@@ -19,7 +19,7 @@ jobs:
       env:
         ACTION_MAIL: weide@outlook.com
         ACTION_NAME: wade
-        GH_PAT: ${{ secrets.PAT1 }}
+        GH_PAT: ${{ secrets.GITHUB_TOKEN }}
         MD_FOLDER: temp_release_notes
         OWNER: weide-zhou
         REPO_NAME: ticket34
