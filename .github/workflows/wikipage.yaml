@@ -1,7 +1,7 @@
 name: create wiki
-on: push 
-#   milestone:
-#     types: [closed]
+on:
+  milestone:
+    types: [closed]
 
 jobs:
   release-notes:
