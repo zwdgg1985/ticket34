@@ -19,7 +19,7 @@ jobs:
       env:
         ACTION_MAIL: myuser@users.noreply.github.com
         ACTION_NAME: myPushingUser
-        GH_PAT: ${{ secrets.GITHUB_TOKEN }}
+        GH_PAT: ${{ secrets.PAT1 }}
         MD_FOLDER: temp_release_notes
         OWNER: weide-zhou
         REPO_NAME: ticket34
