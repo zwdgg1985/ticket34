@@ -1,13 +1,13 @@
 name: create wiki
-on: 
-  milestone:
-    types: [closed]
-name: Milestone Closure
+on: push 
+#   milestone:
+#     types: [closed]
+
 jobs:
   release-notes:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
     - name: Create Release Notes
       uses: docker://decathlon/release-notes-generator-action:2.0.0
       env:
