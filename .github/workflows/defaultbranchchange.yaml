@@ -1,7 +1,6 @@
 name: default branch changed
 on:
-  push:
-    branches: master
+  gollum:
 
 jobs:
   job1:
