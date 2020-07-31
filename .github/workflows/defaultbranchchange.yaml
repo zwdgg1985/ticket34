@@ -1,7 +1,7 @@
 name: default branch changed
 on:
   push:
-    branches: [ $default-branch ]
+    branches: main
 
 jobs:
   job1:
@@ -9,4 +9,4 @@ jobs:
     steps:
       - name: test
         run: |
-          echo test
+          echo $default-branch
