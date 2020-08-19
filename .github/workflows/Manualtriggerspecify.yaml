@@ -1,7 +1,15 @@
 name: manual trigger speficy user
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
+    inputs:
+      passwd:
+        description: 'check who you are'
+        required: true
+
+
 jobs:
   job1:
+    if: ${{ github.event.inputs.name==secrets.passwd }}
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
