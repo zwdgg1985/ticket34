@@ -11,7 +11,7 @@ on:
 
 jobs:
   job1:
-    if: github.event.inputs.name==$passwd
+    if: github.event.inputs.name==${{ env.passwd }}
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
