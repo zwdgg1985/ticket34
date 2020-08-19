@@ -9,7 +9,9 @@ on:
 
 jobs:
   job1:
-    if: ${{ github.event.inputs.name==secrets.passwd }}
+    if: ${{ github.event.inputs.name==env.passwd }}
+    env:
+      passwd: ${{ secrets.passwd }}
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
