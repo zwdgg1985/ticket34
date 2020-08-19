@@ -9,7 +9,7 @@ on:
 
 jobs:
   job1:
-    if: ${{ github.event.inputs.name==env.passwd }}
+    if: github.event.inputs.name==${{ env.passwd }}
     env:
       passwd: ${{ secrets.passwd }}
     runs-on: ubuntu-latest
