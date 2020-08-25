@@ -1,9 +1,9 @@
 name: workflow run
 on:
   workflow_run:
-    workflows: ["manual check"]
+    workflows: ["issue comment"]
+    branches: [B1]
     types:
-      - completed
       - requested
 jobs:
   job1:
