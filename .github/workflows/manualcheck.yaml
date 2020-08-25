@@ -9,3 +9,7 @@ jobs:
       - name: check the update content
         run: |
           cat test.txt
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
