@@ -2,6 +2,7 @@ name: workflow run after issue comment
 on:
   workflow_run:
     workflows: ["issue comment"]
+    branches: [B1]
     types:
       - requested
 jobs:
