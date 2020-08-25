@@ -1,6 +1,7 @@
 name: workflow run
 on:
   workflow_run:
+    workflows: ["manual check"]
 jobs:
   job1:
     runs-on: ubuntu-latest
