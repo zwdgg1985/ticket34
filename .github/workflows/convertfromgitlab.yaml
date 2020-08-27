@@ -22,7 +22,7 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
       - name: build
         run: |
-          mvn mvn $MAVEN_CLI_OPTS compile
+          mvn $MAVEN_CLI_OPTS compile
       - name: test
         run: |
           mvn $MAVEN_CLI_OPTS test
