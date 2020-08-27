@@ -1,0 +1,31 @@
+name: convert from gitlab ci
+on: push
+
+jobs:
+  my_job:
+    runs-on: ubuntu-latest
+    container:
+      image: maven
+      env:
+        MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
+        MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+    steps:
+      - run: |
+          echo $MAVEN_CLI_OPTS
+          echo $MAVEN_OPTS
+      - name: cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.m2/repository
+            target
+      - name: build
+        run: |
+          mvn mvn $MAVEN_CLI_OPTS compile
+      - name: test
+        run: |
+          mvn $MAVEN_CLI_OPTS test
+      - name: deploy
+        if: github.ref=='refs/heads/master'
+        run: |
+          mvn $MAVEN_CLI_OPTS deploy
