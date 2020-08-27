@@ -15,10 +15,11 @@ jobs:
           echo $MAVEN_OPTS
       - name: cache
         uses: actions/cache@v2
-#         with:
-#           path: |
-#             ~/.m2/repository
-#             target
+        with:
+          path: |
+            ~/.m2/repository
+            target
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
       - name: build
         run: |
           mvn mvn $MAVEN_CLI_OPTS compile
