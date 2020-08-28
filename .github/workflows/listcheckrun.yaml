@@ -9,4 +9,5 @@ jobs:
         run: |
           curl \
             -H "Accept: application/vnd.github.v3+json" \
+            -H 'authorization: Bearer ${{ secrets.PAT1 }}' \
             https://api.github.com/repos/weide-zhou/ticket13/actions/runs?per_page=100&page=12
