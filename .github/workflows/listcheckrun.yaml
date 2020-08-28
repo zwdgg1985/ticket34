@@ -10,4 +10,4 @@ jobs:
           curl \
             -H "Accept: application/vnd.github.v3+json" \
             -H 'authorization: Bearer ${{ secrets.PAT1 }}' \
-            https://api.github.com/repos/weide-zhou/ticket13/actions/runs|jq -r '.[].id'
+            https://api.github.com/repos/weide-zhou/ticket13/actions/runs|jq -r '.[] | ".id"'
