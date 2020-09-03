@@ -7,30 +7,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-#       - name: Get npm cache directory
-#         id: npm-cache
-#         run: |
-#           echo "::set-output name=dir::$(npm config get cache)"
-#       - uses: actions/cache@v2
-#         with:
-#           path: ${{ steps.npm-cache.outputs.dir }}
-#           key: ${{ runner.os }}-check
       - name: create directory
         run: |
-          mkdir -p ./installhere
-
+          mkdir -p ./installhere    # create a directory for installation
       - name: Cache node modules
         id: cachestep
         uses: actions/cache@v2
         with:
           path: installhere
-          key: ${{ runner.os }}-check
+          key: ${{ runner.os }}-check   # you can change the key if you don't want to cache.
       - name: install
-        if: steps.cachestep.outputs.cache-hit != 'true'
+        if: steps.cachestep.outputs.cache-hit != 'true'   # if cache hit, skip the installation
         run: |
-          npm install -g --prefix ./installhere puppeteer-cli --unsafe-perm=true
+          npm install -g --prefix ./installhere puppeteer-cli --unsafe-perm=true   # install in the desired folder
         
-      - name: set the PATH and use puppeteer
+      - name: set the PATH and use puppeteer   # check
         run: |
-          export PATH=$PATH:${{github.workspace}}/installhere/bin
+          export PATH=$PATH:${{github.workspace}}/installhere/bin   # add to $PATH for command invoke
           puppeteer print https://github.com/JarvusInnovations/puppeteer-cli puppeteer-cli.pdf
