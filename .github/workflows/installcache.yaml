@@ -7,15 +7,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - run: npm config get cache
-      - name: Get npm cache directory
-        id: npm-cache
-        run: |
-          echo "::set-output name=dir::$(npm config get cache)"
       - uses: actions/cache@v2
         id: cachestep
         with:
-          path: ${{ steps.npm-cache.outputs.dir }}
+          path: /usr/local/lib/node_modules/puppeteer-cli
           key: ${{ runner.os }}-test
 #       - name: Cache node modules
 #         continue-on-error: true
@@ -28,7 +23,7 @@ jobs:
       - name: install
         if: steps.cachestep.outputs.cache-hit != 'true'
         run: |
-          sudo npm install -g puppeteer-cli --unsafe-perm=true
+          npm install -g puppeteer-cli --unsafe-perm=true
       - name: check 
         continue-on-error: true
         run: |
