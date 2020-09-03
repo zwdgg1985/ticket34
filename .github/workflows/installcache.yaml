@@ -21,7 +21,9 @@ jobs:
         run: |
           npm install -g --prefix ./installhere puppeteer-cli --unsafe-perm=true   # install in the desired folder
         
-      - name: set the PATH and use puppeteer   # check
+      - name: add to PATH
         run: |
-          export PATH=$PATH:${{github.workspace}}/installhere/bin   # add to $PATH for command invoke
+          echo "::add-path::${{github.workspace}}/installhere/bin"
+      - name: check with puppeteer
+        run: |
           puppeteer print https://github.com/JarvusInnovations/puppeteer-cli puppeteer-cli.pdf
