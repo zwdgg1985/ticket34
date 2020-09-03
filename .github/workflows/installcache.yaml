@@ -16,7 +16,7 @@ jobs:
       - name: install
         if: steps.cachestep.outputs.cache-hit != 'true'
         run: |
-          npm run-script installcheck
+          sudo npm install -g puppeteer-cli --unsafe-perm=true
       - name: check 
         continue-on-error: true
         run: |
