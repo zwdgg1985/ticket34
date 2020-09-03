@@ -17,14 +17,14 @@ jobs:
 #           key: ${{ runner.os }}-check
       - name: create directory
         run: |
-          mkdir -p ./installhere/node_modules
+          mkdir -p ./installhere
 
       - name: Cache node modules
         continue-on-error: true
         id: cachestep
         uses: actions/cache@v2
         with:
-          path: installhere/node_modules
+          path: installhere
           key: ${{ runner.os }}-check
       - name: install
         if: steps.cachestep.outputs.cache-hit != 'true'
@@ -33,7 +33,7 @@ jobs:
         
       - name: add path
         run: |
-          export PATH=$PATH:${{github.workspace}}/installhere/lib/node_modules/puppeteer-cli
+          export PATH=$PATH:${{github.workspace}}/installhere/bin
       - name: check 
         continue-on-error: true
         run: |
