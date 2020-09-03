@@ -1,0 +1,28 @@
+name: install cache
+on: push
+
+jobs:
+  jstest1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cache node modules
+        id: cachestep
+        uses: actions/cache@v2
+        with:
+          path: /usr/local/lib/node_modules
+          key: ${{ runner.os }}-build
+      - name: install
+        if: steps.cachestep.outputs.cache-hit != 'true'
+        run: |
+          npm run-script installcheck
+      - name: check 
+        continue-on-error: true
+        run: |
+          pwd
+          echo ----------------
+          cd /usr/local/lib/node_modules
+          ls -al | grep puppeteer
+      - run: |
+          puppeteer print https://github.com/JarvusInnovations/puppeteer-cli puppeteer-cli.pdf
