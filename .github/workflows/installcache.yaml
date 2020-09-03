@@ -12,8 +12,9 @@ jobs:
         id: cachestep
         uses: actions/cache@v2
         with:
-          path: /usr/local/lib/node_modules/puppeteer-cli
-          key: ${{ runner.os }}-test
+          path: |
+            **/node_modules/puppeteer-cli
+          key: ${{ runner.os }}-check
       - name: install
         if: steps.cachestep.outputs.cache-hit != 'true'
         run: |
