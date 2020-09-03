@@ -7,23 +7,29 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        id: cachestep
-        with:
-          path: /usr/local/lib/node_modules/puppeteer-cli
-          key: ${{ runner.os }}-test
-#       - name: Cache node modules
-#         continue-on-error: true
-#         id: cachestep
-#         uses: actions/cache@v2
+#       - name: Get npm cache directory
+#         id: npm-cache
+#         run: |
+#           echo "::set-output name=dir::$(npm config get cache)"
+#       - uses: actions/cache@v2
 #         with:
-#           path: |
-#             **/node_modules/puppeteer-cli
+#           path: ${{ steps.npm-cache.outputs.dir }}
 #           key: ${{ runner.os }}-check
+      - name: create directory
+        run: |
+          mkdir -p ./installhere/node_modules
+
+      - name: Cache node modules
+        continue-on-error: true
+        id: cachestep
+        uses: actions/cache@v2
+        with:
+          path: installhere/node_modules
+          key: ${{ runner.os }}-check
       - name: install
         if: steps.cachestep.outputs.cache-hit != 'true'
         run: |
-          npm install -g puppeteer-cli --unsafe-perm=true
+          npm install -g --prefix ./installhere puppeteer-cli --unsafe-perm=true
       - name: check 
         continue-on-error: true
         run: |
