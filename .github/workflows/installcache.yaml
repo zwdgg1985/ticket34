@@ -37,13 +37,14 @@ jobs:
           ls -al
           cd bin
           ls -al
-      - name: add path and check
-        run: |
-          export PATH=$PATH:${{github.workspace}}/installhere/bin
-          cd ${{github.workspace}}/installhere/bin
-          ls -al
-      - name: check
-        run: |
-          echo $PATH
+#       - name: add path and check
+#         run: |
+#           export PATH=$PATH:${{github.workspace}}/installhere/bin
+#           cd ${{github.workspace}}/installhere/bin
+#           ls -al
+#       - name: check
+#         run: |
+#           echo $PATH
       - run: |
+          export PATH=$PATH:${{github.workspace}}/installhere/bin
           puppeteer print https://github.com/JarvusInnovations/puppeteer-cli puppeteer-cli.pdf
