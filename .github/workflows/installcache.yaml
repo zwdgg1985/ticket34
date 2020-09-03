@@ -18,7 +18,6 @@ jobs:
       - name: create directory
         run: |
           mkdir -p ./installhere
-          ls -a | grep installhere
 
       - name: Cache node modules
         id: cachestep
@@ -31,20 +30,7 @@ jobs:
         run: |
           npm install -g --prefix ./installhere puppeteer-cli --unsafe-perm=true
         
-      - name: check1
+      - name: set the PATH and use puppeteer
         run: |
-          cd installhere
-          ls -al
-          cd bin
-          ls -al
-#       - name: add path and check
-#         run: |
-#           export PATH=$PATH:${{github.workspace}}/installhere/bin
-#           cd ${{github.workspace}}/installhere/bin
-#           ls -al
-#       - name: check
-#         run: |
-#           echo $PATH
-      - run: |
           export PATH=$PATH:${{github.workspace}}/installhere/bin
           puppeteer print https://github.com/JarvusInnovations/puppeteer-cli puppeteer-cli.pdf
