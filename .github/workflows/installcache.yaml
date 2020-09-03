@@ -32,7 +32,7 @@ jobs:
           npm install -g --prefix ./installhere puppeteer-cli --unsafe-perm=true
       - name: add path
         run: |
-          export PATH=$PATH:/bin:/${{github.workspace}}/installhere/lib/node_modules
+          export PATH=$PATH:/bin:${{github.workspace}}/installhere/lib/node_modules
       - name: check 
         continue-on-error: true
         run: |
