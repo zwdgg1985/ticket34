@@ -1,4 +1,4 @@
-name: manual trigger speficy user ${{ github.event.inputs.name }} from ${{ github.event.inputs.home }}
+name: manual trigger speficy user
 on:
   workflow_dispatch:
     inputs:
