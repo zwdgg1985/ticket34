@@ -1,26 +1,20 @@
 name: PR Comment
 
 on:
-  pull_request_target:
-    types: [opened, edited, synchronize, reopened]
+  pull_request:
 
 jobs:
   PR-Comment:
     runs-on: ubuntu-latest
     steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-        
-      - name: PR Comment
-        uses: actions/github-script@v2
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.issues.createComment({
-              issue_number: ${{ github.event.number }},
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: ':warning: Test!'
-            })
+    - uses: actions/checkout@v2
+    - name: Get run URL
+      run: |
+        body=$(<run.txt)
+        curl --request POST \
+        --url https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.number }}/comments \
+        --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+        --header 'Accept: application/vnd.github.v3+json' \
+        --data '{
+          "body": "'"$body"'"
+          }'
