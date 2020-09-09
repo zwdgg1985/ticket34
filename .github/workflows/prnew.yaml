@@ -23,6 +23,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: get the run URL
+      run: |
+        echo "::set-env name=body::$(<run.txt)"
 #     - name: Get run URL
 #       run: |
 #         body=$(<run.txt)
@@ -39,5 +42,3 @@ jobs:
             repo: context.repo.repo,
             body: $body
           })
-      env:
-        body: $(<run.txt)
