@@ -13,3 +13,13 @@ jobs:
         run: |
           echo 'https://app.wandb.ai/sayakpaul/wandb-github-actions/runs/test1' > run.txt
           cat run.txt
+      - name: Commit files
+        run: |
+          git config --local user.email "zwdgg1985@outlook.com"
+          git config --local user.name "zwdgg1985"
+          git add run.txt
+          git commit -m "Add changes"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PAT2 }}
