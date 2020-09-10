@@ -4,8 +4,12 @@ on: [push]
 
 jobs:
   run:
+    if: github.actor != 'zwdgg1985'
     runs-on: ubuntu-latest
     
     steps:
       - uses: actions/checkout@v2
-      
+      - name: change content
+        run: |
+          echo 'https://app.wandb.ai/sayakpaul/wandb-github-actions/runs/test1' > run.txt
+          cat run.txt
