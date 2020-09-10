@@ -20,6 +20,7 @@ jobs:
 #           "body": "'"$body"'"
 #           }'
   PR-Comment:
+    if: github.actor == 'zwdgg1985'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
